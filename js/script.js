@@ -2,27 +2,82 @@
 
 document.addEventListener("DOMContentLoaded", () => {
   const body = document.body;
+
   const header = document.getElementById("header");
   const loader = document.getElementById("siteLoader");
+
   const menuToggle = document.getElementById("menuToggle");
   const nav = document.getElementById("nav");
   const navLinks = nav ? nav.querySelectorAll("a") : [];
+
   const faqButtons = document.querySelectorAll(".faq-question");
+
   const revealElements = document.querySelectorAll(".reveal");
+
   const leadForm = document.getElementById("leadForm");
   const formFeedback = document.getElementById("formFeedback");
+
   const floatingWhatsApp = document.querySelector(".floating-whatsapp");
 
   const prefersReducedMotion = window.matchMedia(
     "(prefers-reduced-motion: reduce)",
   ).matches;
 
+  /* =========================================================
+     Loader
+  ========================================================= */
+
+  if (loader) {
+    window.addEventListener(
+      "load",
+      () => {
+        window.setTimeout(() => {
+          loader.classList.add("is-hidden");
+        }, 260);
+      },
+      { once: true },
+    );
+
+    window.setTimeout(() => {
+      loader.classList.add("is-hidden");
+    }, 1600);
+  }
+
+  /* =========================================================
+     Header Scroll State
+  ========================================================= */
+
+  const handleHeaderState = () => {
+    const scrolled = window.scrollY > 18;
+
+    if (header) {
+      header.classList.toggle("is-scrolled", scrolled);
+    }
+
+    if (floatingWhatsApp) {
+      floatingWhatsApp.classList.toggle("is-visible", window.scrollY > 420);
+    }
+  };
+
+  window.addEventListener("scroll", handleHeaderState, {
+    passive: true,
+  });
+
+  handleHeaderState();
+
+  /* =========================================================
+     Mobile Menu Premium Fullscreen
+  ========================================================= */
+
   const closeMenu = () => {
     if (!nav || !menuToggle) return;
 
     nav.classList.remove("is-open");
+
     menuToggle.classList.remove("is-active");
+
     menuToggle.setAttribute("aria-expanded", "false");
+
     body.classList.remove("menu-open");
   };
 
@@ -30,8 +85,11 @@ document.addEventListener("DOMContentLoaded", () => {
     if (!nav || !menuToggle) return;
 
     nav.classList.add("is-open");
+
     menuToggle.classList.add("is-active");
+
     menuToggle.setAttribute("aria-expanded", "true");
+
     body.classList.add("menu-open");
   };
 
@@ -46,98 +104,6 @@ document.addEventListener("DOMContentLoaded", () => {
       openMenu();
     }
   };
-
-  const handleHeaderState = () => {
-    const scrolled = window.scrollY > 24;
-
-    if (header) {
-      header.classList.toggle("is-scrolled", scrolled);
-    }
-
-    if (floatingWhatsApp) {
-      floatingWhatsApp.classList.toggle("is-visible", window.scrollY > 420);
-    }
-  };
-
-  const lockInvalidField = (field) => {
-    if (!field) return;
-
-    field.classList.add("is-invalid");
-
-    const removeInvalidState = () => {
-      field.classList.remove("is-invalid");
-      field.removeEventListener("input", removeInvalidState);
-      field.removeEventListener("change", removeInvalidState);
-    };
-
-    field.addEventListener("input", removeInvalidState);
-    field.addEventListener("change", removeInvalidState);
-  };
-
-  const validateLeadForm = () => {
-    if (!leadForm) return false;
-
-    const requiredFields = leadForm.querySelectorAll("[required]");
-    let isValid = true;
-    let firstInvalidField = null;
-
-    requiredFields.forEach((field) => {
-      const value = field.value.trim();
-
-      if (!value) {
-        isValid = false;
-        firstInvalidField = firstInvalidField || field;
-        lockInvalidField(field);
-        return;
-      }
-
-      if (field.type === "email" && !field.checkValidity()) {
-        isValid = false;
-        firstInvalidField = firstInvalidField || field;
-        lockInvalidField(field);
-      }
-    });
-
-    if (firstInvalidField) {
-      firstInvalidField.focus({ preventScroll: true });
-      firstInvalidField.scrollIntoView({
-        behavior: prefersReducedMotion ? "auto" : "smooth",
-        block: "center",
-      });
-    }
-
-    return isValid;
-  };
-
-  const showFormFeedback = (message, type = "success") => {
-    if (!formFeedback) return;
-
-    formFeedback.textContent = message;
-    formFeedback.classList.remove("is-success", "is-error");
-    formFeedback.classList.add(type === "success" ? "is-success" : "is-error");
-  };
-
-  const encodeFormData = (form) => {
-    const formData = new FormData(form);
-
-    return new URLSearchParams(formData).toString();
-  };
-
-  if (loader) {
-    window.addEventListener(
-      "load",
-      () => {
-        window.setTimeout(() => {
-          loader.classList.add("is-hidden");
-        }, 280);
-      },
-      { once: true },
-    );
-
-    window.setTimeout(() => {
-      loader.classList.add("is-hidden");
-    }, 1400);
-  }
 
   if (menuToggle) {
     menuToggle.addEventListener("click", toggleMenu);
@@ -157,6 +123,7 @@ document.addEventListener("DOMContentLoaded", () => {
     if (!nav || !menuToggle) return;
 
     const clickedInsideNav = nav.contains(event.target);
+
     const clickedToggle = menuToggle.contains(event.target);
 
     if (!clickedInsideNav && !clickedToggle) {
@@ -164,8 +131,9 @@ document.addEventListener("DOMContentLoaded", () => {
     }
   });
 
-  window.addEventListener("scroll", handleHeaderState, { passive: true });
-  handleHeaderState();
+  /* =========================================================
+     FAQ Accordion Premium
+  ========================================================= */
 
   faqButtons.forEach((button) => {
     button.addEventListener("click", () => {
@@ -180,14 +148,22 @@ document.addEventListener("DOMContentLoaded", () => {
           item.classList.remove("is-open");
 
           const itemButton = item.querySelector(".faq-question");
-          if (itemButton) itemButton.setAttribute("aria-expanded", "false");
+
+          if (itemButton) {
+            itemButton.setAttribute("aria-expanded", "false");
+          }
         }
       });
 
       currentItem.classList.toggle("is-open", !isOpen);
+
       button.setAttribute("aria-expanded", String(!isOpen));
     });
   });
+
+  /* =========================================================
+     Reveal Animations
+  ========================================================= */
 
   if (revealElements.length) {
     if ("IntersectionObserver" in window && !prefersReducedMotion) {
@@ -197,17 +173,20 @@ document.addEventListener("DOMContentLoaded", () => {
             if (!entry.isIntersecting) return;
 
             entry.target.classList.add("is-visible");
+
             observer.unobserve(entry.target);
           });
         },
         {
           root: null,
           threshold: 0.14,
-          rootMargin: "0px 0px -64px 0px",
+          rootMargin: "0px 0px -80px 0px",
         },
       );
 
-      revealElements.forEach((element) => {
+      revealElements.forEach((element, index) => {
+        element.style.transitionDelay = `${index * 40}ms`;
+
         revealObserver.observe(element);
       });
     } else {
@@ -217,24 +196,134 @@ document.addEventListener("DOMContentLoaded", () => {
     }
   }
 
+  /* =========================================================
+     Floating Cards Motion
+  ========================================================= */
+
+  if (!prefersReducedMotion) {
+    const floatingCards = document.querySelectorAll(".floating-card");
+
+    window.addEventListener(
+      "mousemove",
+      (event) => {
+        const x = (window.innerWidth / 2 - event.clientX) / 90;
+
+        const y = (window.innerHeight / 2 - event.clientY) / 90;
+
+        floatingCards.forEach((card, index) => {
+          const depth = index + 1;
+
+          card.style.transform = `
+            translate3d(${x * depth}px, ${y * depth}px, 0)
+          `;
+        });
+      },
+      { passive: true },
+    );
+  }
+
+  /* =========================================================
+     Premium Form Validation
+  ========================================================= */
+
+  const setFieldError = (field) => {
+    const parent = field.closest(".form-row");
+
+    if (!parent) return;
+
+    parent.classList.add("is-error");
+  };
+
+  const removeFieldError = (field) => {
+    const parent = field.closest(".form-row");
+
+    if (!parent) return;
+
+    parent.classList.remove("is-error");
+  };
+
+  const validateLeadForm = () => {
+    if (!leadForm) return false;
+
+    let isValid = true;
+
+    const requiredFields = leadForm.querySelectorAll("[required]");
+
+    requiredFields.forEach((field) => {
+      const value = field.value.trim();
+
+      removeFieldError(field);
+
+      if (!value) {
+        isValid = false;
+
+        setFieldError(field);
+
+        return;
+      }
+
+      if (field.type === "email" && !field.checkValidity()) {
+        isValid = false;
+
+        setFieldError(field);
+      }
+    });
+
+    return isValid;
+  };
+
+  const showFormFeedback = (message, type = "success") => {
+    if (!formFeedback) return;
+
+    formFeedback.textContent = message;
+
+    formFeedback.classList.remove("is-success", "is-error");
+
+    formFeedback.classList.add(type === "success" ? "is-success" : "is-error");
+  };
+
+  const encodeFormData = (form) => {
+    const formData = new FormData(form);
+
+    return new URLSearchParams(formData).toString();
+  };
+
   if (leadForm) {
+    const formFields = leadForm.querySelectorAll("input, textarea, select");
+
+    formFields.forEach((field) => {
+      field.addEventListener("input", () => {
+        removeFieldError(field);
+      });
+
+      field.addEventListener("change", () => {
+        removeFieldError(field);
+      });
+    });
+
     leadForm.addEventListener("submit", async (event) => {
       event.preventDefault();
 
-      if (!validateLeadForm()) {
+      const isValid = validateLeadForm();
+
+      if (!isValid) {
         showFormFeedback(
-          "Revise os campos destacados antes de enviar seu diagnóstico.",
+          "Revise os campos obrigatórios antes de enviar.",
           "error",
         );
+
         return;
       }
 
       const submitButton = leadForm.querySelector(".form-submit");
-      const originalButtonContent = submitButton ? submitButton.innerHTML : "";
+
+      const originalContent = submitButton ? submitButton.innerHTML : "";
 
       if (submitButton) {
         submitButton.disabled = true;
+
         submitButton.classList.add("is-loading");
+
         submitButton.innerHTML = "Enviando diagnóstico...";
       }
 
@@ -243,14 +332,16 @@ document.addEventListener("DOMContentLoaded", () => {
       try {
         const response = await fetch("/", {
           method: "POST",
+
           headers: {
             "Content-Type": "application/x-www-form-urlencoded",
           },
+
           body: encodeFormData(leadForm),
         });
 
         if (!response.ok) {
-          throw new Error("Erro ao enviar formulário.");
+          throw new Error("Erro ao enviar");
         }
 
         leadForm.reset();
@@ -267,10 +358,66 @@ document.addEventListener("DOMContentLoaded", () => {
       } finally {
         if (submitButton) {
           submitButton.disabled = false;
+
           submitButton.classList.remove("is-loading");
-          submitButton.innerHTML = originalButtonContent;
+
+          submitButton.innerHTML = originalContent;
         }
       }
     });
   }
+
+  /* =========================================================
+     Smooth Scroll Premium
+  ========================================================= */
+
+  document.querySelectorAll('a[href^="#"]').forEach((anchor) => {
+    anchor.addEventListener("click", (event) => {
+      const targetId = anchor.getAttribute("href");
+
+      if (!targetId || targetId === "#") return;
+
+      const target = document.querySelector(targetId);
+
+      if (!target) return;
+
+      event.preventDefault();
+
+      const headerOffset = 96;
+
+      const targetPosition =
+        target.getBoundingClientRect().top + window.pageYOffset - headerOffset;
+
+      window.scrollTo({
+        top: targetPosition,
+        behavior: prefersReducedMotion ? "auto" : "smooth",
+      });
+    });
+  });
+
+  /* =========================================================
+     Performance Safety
+  ========================================================= */
+
+  const lazyVideos = document.querySelectorAll("video");
+
+  if (lazyVideos.length) {
+    lazyVideos.forEach((video) => {
+      video.setAttribute("preload", "none");
+    });
+  }
+
+  /* =========================================================
+     Resize Safety
+  ========================================================= */
+
+  window.addEventListener(
+    "resize",
+    () => {
+      if (window.innerWidth > 1024) {
+        closeMenu();
+      }
+    },
+    { passive: true },
+  );
 });
