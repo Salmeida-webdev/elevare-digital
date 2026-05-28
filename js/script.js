@@ -18,9 +18,11 @@ document.addEventListener("DOMContentLoaded", () => {
 
   const floatingWhatsApp = document.querySelector(".floating-whatsapp");
 
-  const magneticElements = document.querySelectorAll(
-    ".btn, .header-cta, .premium-card, .case-story-card, .metric-card, .contact-card",
-  );
+  const magneticElements = window.matchMedia("(hover: hover)").matches
+    ? document.querySelectorAll(
+        ".btn, .header-cta, .premium-card, .case-story-card, .metric-card, .contact-card",
+      )
+    : [];
 
   const cursor = document.getElementById("customCursor");
   const cursorDot = document.getElementById("customCursorDot");
@@ -30,25 +32,31 @@ document.addEventListener("DOMContentLoaded", () => {
     "(prefers-reduced-motion: reduce)",
   ).matches;
 
-  /* Loader */
+  /* =========================
+     Loader
+  ========================= */
 
   if (loader) {
     window.addEventListener(
       "load",
       () => {
-        window.setTimeout(() => {
-          loader.classList.add("is-hidden");
-        }, 260);
+        requestAnimationFrame(() => {
+          window.setTimeout(() => {
+            loader.classList.add("is-hidden");
+          }, 180);
+        });
       },
       { once: true },
     );
 
     window.setTimeout(() => {
       loader.classList.add("is-hidden");
-    }, 1600);
+    }, 1400);
   }
 
-  /* Header */
+  /* =========================
+     Header Scroll
+  ========================= */
 
   const handleHeaderState = () => {
     const scrolled = window.scrollY > 18;
@@ -62,10 +70,15 @@ document.addEventListener("DOMContentLoaded", () => {
     }
   };
 
-  window.addEventListener("scroll", handleHeaderState, { passive: true });
+  window.addEventListener("scroll", handleHeaderState, {
+    passive: true,
+  });
+
   handleHeaderState();
 
-  /* Menu mobile */
+  /* =========================
+     Menu Mobile
+  ========================= */
 
   const closeMenu = () => {
     if (!nav || !menuToggle) return;
@@ -114,7 +127,9 @@ document.addEventListener("DOMContentLoaded", () => {
     }
   });
 
-  /* FAQ */
+  /* =========================
+     FAQ Accordion
+  ========================= */
 
   faqButtons.forEach((button) => {
     button.addEventListener("click", () => {
@@ -141,7 +156,9 @@ document.addEventListener("DOMContentLoaded", () => {
     });
   });
 
-  /* Reveals */
+  /* =========================
+     Reveal Animations
+  ========================= */
 
   if (revealElements.length) {
     if ("IntersectionObserver" in window && !prefersReducedMotion) {
@@ -155,10 +172,13 @@ document.addEventListener("DOMContentLoaded", () => {
             );
 
             children.forEach((child, index) => {
-              child.style.transitionDelay = `${index * 90}ms`;
+              child.style.transitionDelay = `${index * 70}ms`;
             });
 
-            entry.target.classList.add("is-visible");
+            requestAnimationFrame(() => {
+              entry.target.classList.add("is-visible");
+            });
+
             observer.unobserve(entry.target);
           });
         },
@@ -178,32 +198,44 @@ document.addEventListener("DOMContentLoaded", () => {
     }
   }
 
-  /* Floating cards */
+  /* =========================
+     Floating Cards
+  ========================= */
 
-  if (!prefersReducedMotion) {
+  if (!prefersReducedMotion && window.matchMedia("(hover: hover)").matches) {
     const floatingCards = document.querySelectorAll(".floating-card");
+
+    let floatingFrame = null;
 
     window.addEventListener(
       "mousemove",
       (event) => {
-        const x = (window.innerWidth / 2 - event.clientX) / 90;
-        const y = (window.innerHeight / 2 - event.clientY) / 90;
+        if (floatingFrame) return;
 
-        floatingCards.forEach((card, index) => {
-          const depth = index + 1;
+        floatingFrame = requestAnimationFrame(() => {
+          const x = (window.innerWidth / 2 - event.clientX) / 120;
+          const y = (window.innerHeight / 2 - event.clientY) / 120;
 
-          card.style.transform = `translate3d(${x * depth}px, ${
-            y * depth
-          }px, 0)`;
+          floatingCards.forEach((card, index) => {
+            const depth = index + 1;
+
+            card.style.transform = `translate3d(${x * depth}px, ${
+              y * depth
+            }px, 0)`;
+          });
+
+          floatingFrame = null;
         });
       },
       { passive: true },
     );
   }
 
-  /* Magnetic hover */
+  /* =========================
+     Magnetic Hover
+  ========================= */
 
-  if (!prefersReducedMotion) {
+  if (!prefersReducedMotion && window.matchMedia("(hover: hover)").matches) {
     magneticElements.forEach((element) => {
       element.addEventListener("mousemove", (event) => {
         const rect = element.getBoundingClientRect();
@@ -211,33 +243,50 @@ document.addEventListener("DOMContentLoaded", () => {
         const x = event.clientX - rect.left - rect.width / 2;
         const y = event.clientY - rect.top - rect.height / 2;
 
-        element.classList.add("magnetic-active");
-        element.style.transform = `translate(${x * 0.08}px, ${y * 0.08}px)`;
+        requestAnimationFrame(() => {
+          element.style.transform = `translate(${x * 0.06}px, ${y * 0.06}px)`;
+        });
       });
 
       element.addEventListener("mouseleave", () => {
-        element.classList.remove("magnetic-active");
         element.style.transform = "";
       });
     });
   }
 
-  /* Cursor customizado */
+  /* =========================
+     Cursor Customizado
+  ========================= */
 
   if (
     cursor &&
     cursorDot &&
     cursorText &&
     !prefersReducedMotion &&
-    window.innerWidth > 1024
+    window.innerWidth > 1024 &&
+    window.matchMedia("(hover: hover)").matches
   ) {
     body.classList.add("has-custom-cursor");
+
+    let cursorFrame = null;
+    let mouseX = 0;
+    let mouseY = 0;
 
     window.addEventListener(
       "mousemove",
       (event) => {
-        cursor.style.transform = `translate3d(${event.clientX}px, ${event.clientY}px, 0) translate(-50%, -50%)`;
-        cursorDot.style.transform = `translate3d(${event.clientX}px, ${event.clientY}px, 0) translate(-50%, -50%)`;
+        mouseX = event.clientX;
+        mouseY = event.clientY;
+
+        if (!cursorFrame) {
+          cursorFrame = requestAnimationFrame(() => {
+            cursor.style.transform = `translate3d(${mouseX}px, ${mouseY}px, 0) translate(-50%, -50%)`;
+
+            cursorDot.style.transform = `translate3d(${mouseX}px, ${mouseY}px, 0) translate(-50%, -50%)`;
+
+            cursorFrame = null;
+          });
+        }
       },
       { passive: true },
     );
@@ -249,7 +298,10 @@ document.addEventListener("DOMContentLoaded", () => {
         const label = zone.getAttribute("data-cursor-label") || "Explorar";
 
         cursorText.textContent = label;
-        body.classList.add("cursor-expanded");
+
+        requestAnimationFrame(() => {
+          body.classList.add("cursor-expanded");
+        });
       });
 
       zone.addEventListener("mouseleave", () => {
@@ -259,10 +311,13 @@ document.addEventListener("DOMContentLoaded", () => {
     });
   }
 
-  /* Formulário */
+  /* =========================
+     Formulário
+  ========================= */
 
   const setFieldError = (field) => {
     const parent = field.closest(".form-row");
+
     if (!parent) return;
 
     parent.classList.add("is-error");
@@ -270,6 +325,7 @@ document.addEventListener("DOMContentLoaded", () => {
 
   const removeFieldError = (field) => {
     const parent = field.closest(".form-row");
+
     if (!parent) return;
 
     parent.classList.remove("is-error");
@@ -279,6 +335,7 @@ document.addEventListener("DOMContentLoaded", () => {
     if (!leadForm) return false;
 
     let isValid = true;
+
     const requiredFields = leadForm.querySelectorAll("[required]");
 
     requiredFields.forEach((field) => {
@@ -305,12 +362,15 @@ document.addEventListener("DOMContentLoaded", () => {
     if (!formFeedback) return;
 
     formFeedback.textContent = message;
+
     formFeedback.classList.remove("is-success", "is-error");
+
     formFeedback.classList.add(type === "success" ? "is-success" : "is-error");
   };
 
   const encodeFormData = (form) => {
     const formData = new FormData(form);
+
     return new URLSearchParams(formData).toString();
   };
 
@@ -319,6 +379,7 @@ document.addEventListener("DOMContentLoaded", () => {
 
     formFields.forEach((field) => {
       field.addEventListener("input", () => removeFieldError(field));
+
       field.addEventListener("change", () => removeFieldError(field));
     });
 
@@ -330,10 +391,12 @@ document.addEventListener("DOMContentLoaded", () => {
           "Revise os campos obrigatórios antes de enviar.",
           "error",
         );
+
         return;
       }
 
       const submitButton = leadForm.querySelector(".form-submit");
+
       const originalContent = submitButton ? submitButton.innerHTML : "";
 
       if (submitButton) {
@@ -353,7 +416,9 @@ document.addEventListener("DOMContentLoaded", () => {
           body: encodeFormData(leadForm),
         });
 
-        if (!response.ok) throw new Error("Erro ao enviar");
+        if (!response.ok) {
+          throw new Error("Erro ao enviar");
+        }
 
         leadForm.reset();
 
@@ -376,7 +441,9 @@ document.addEventListener("DOMContentLoaded", () => {
     });
   }
 
-  /* Smooth scroll */
+  /* =========================
+     Smooth Scroll
+  ========================= */
 
   document.querySelectorAll('a[href^="#"]').forEach((anchor) => {
     anchor.addEventListener("click", (event) => {
@@ -391,6 +458,7 @@ document.addEventListener("DOMContentLoaded", () => {
       event.preventDefault();
 
       const headerOffset = 96;
+
       const targetPosition =
         target.getBoundingClientRect().top + window.pageYOffset - headerOffset;
 
@@ -401,14 +469,22 @@ document.addEventListener("DOMContentLoaded", () => {
     });
   });
 
-  /* Segurança no resize */
+  /* =========================
+     Resize Debounce
+  ========================= */
+
+  let resizeTimeout;
 
   window.addEventListener(
     "resize",
     () => {
-      if (window.innerWidth > 1024) {
-        closeMenu();
-      }
+      clearTimeout(resizeTimeout);
+
+      resizeTimeout = setTimeout(() => {
+        if (window.innerWidth > 1024) {
+          closeMenu();
+        }
+      }, 180);
     },
     { passive: true },
   );

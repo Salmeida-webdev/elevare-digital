@@ -1,88 +1,318 @@
 <!doctype html>
+
 <html lang="pt-BR">
   <head>
-    <meta charset="UTF-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-
+    <meta charset="utf-8" />
+    <meta content="width=device-width, initial-scale=1.0" name="viewport" />
     <title>Elevare Digital | Mentoria e Consultoria Digital High-Ticket</title>
     <meta
-      name="description"
       content="Mentoria e consultoria digital premium para negócios que querem posicionamento, autoridade, leads qualificados e crescimento com estratégia."
+      name="description"
     />
     <meta
-      name="keywords"
       content="Elevare Digital, consultoria digital, mentoria digital, posicionamento digital, tráfego pago, marketing digital, geração de leads"
+      name="keywords"
     />
-    <meta name="author" content="Elevare Digital" />
-    <meta name="robots" content="index, follow" />
-    <link rel="canonical" href="https://elevarestudio.netlify.app/" />
-
+    <meta content="Elevare Digital" name="author" />
+    <meta content="index, follow" name="robots" />
+    <link href="https://elevarestudio.netlify.app/" rel="canonical" />
     <meta
-      property="og:title"
       content="Elevare Digital | Estratégia Digital Premium"
+      property="og:title"
     />
     <meta
-      property="og:description"
       content="Transforme sua presença digital em uma estrutura profissional de autoridade, conversão e crescimento."
+      property="og:description"
     />
-    <meta property="og:type" content="website" />
-    <meta property="og:url" content="https://elevarestudio.netlify.app/" />
+    <meta content="website" property="og:type" />
+    <meta content="https://elevarestudio.netlify.app/" property="og:url" />
     <meta
+      content="https://elevarestudio.netlify.app/assets/images/hero-elevare.avif"
       property="og:image"
-      content="https://elevarestudio.netlify.app/assets/images/hero-elevare.avif"
     />
-    <meta property="og:locale" content="pt_BR" />
-
-    <meta name="twitter:card" content="summary_large_image" />
+    <meta content="pt_BR" property="og:locale" />
+    <meta content="summary_large_image" name="twitter:card" />
     <meta
-      name="twitter:title"
       content="Elevare Digital | Mentoria Digital Premium"
+      name="twitter:title"
     />
     <meta
-      name="twitter:description"
       content="Consultoria digital para negócios que querem crescer com estratégia, autoridade e previsibilidade."
+      name="twitter:description"
     />
     <meta
-      name="twitter:image"
       content="https://elevarestudio.netlify.app/assets/images/hero-elevare.avif"
+      name="twitter:image"
     />
-
-    <meta name="theme-color" content="#0F1115" />
-    <meta name="msapplication-TileColor" content="#0F1115" />
-    <meta name="msapplication-config" content="browserconfig.xml" />
-
-    <link rel="manifest" href="site.webmanifest" />
-    <link rel="icon" type="image/png" href="assets/logos/favicon-elevare.png" />
-    <link rel="apple-touch-icon" href="assets/logos/favicon-elevare.png" />
-
-    <link rel="preconnect" href="https://fonts.googleapis.com" />
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <meta content="#0F1115" name="theme-color" />
+    <meta content="#0F1115" name="msapplication-TileColor" />
+    <meta content="browserconfig.xml" name="msapplication-config" />
+    <link href="site.webmanifest" rel="manifest" />
+    <link href="assets/logos/favicon-elevare.png" rel="icon" type="image/png" />
+    <link href="assets/logos/favicon-elevare.png" rel="apple-touch-icon" />
+    <link href="https://fonts.googleapis.com" rel="preconnect" />
+    <link crossorigin="" href="https://fonts.gstatic.com" rel="preconnect" />
     <link
-      href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&family=Space+Grotesk:wght@500;600;700&display=swap"
+      href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&amp;family=Space+Grotesk:wght@500;600;700&amp;display=swap"
       rel="stylesheet"
     />
-
     <link
-      rel="preload"
       as="image"
       href="assets/images/hero-elevare-mobile.avif"
       media="(max-width: 640px)"
+      rel="preload"
     />
     <link
-      rel="preload"
       as="image"
       href="assets/images/hero-elevare-tablet.avif"
       media="(min-width: 641px) and (max-width: 1024px)"
+      rel="preload"
     />
     <link
-      rel="preload"
       as="image"
       href="assets/images/hero-elevare.avif"
       media="(min-width: 1025px)"
+      rel="preload"
     />
-
-    <link rel="stylesheet" href="css/style.css" />
-
+    <style data-critical="true">
+      /* Critical CSS — above the fold */
+      :root {
+        --color-bg: #0e1118;
+        --color-text: #eef2ff;
+        --color-white: #fff;
+        --color-muted: #b8c0d4;
+        --color-line: rgba(255, 255, 255, 0.1);
+        --gradient-main: linear-gradient(
+          135deg,
+          #4f7cff 0%,
+          #7b61ff 52%,
+          #b46cff 100%
+        );
+        --font-title: "Space Grotesk", system-ui, sans-serif;
+        --font-body: "Inter", system-ui, sans-serif;
+        --container-wide: 1320px;
+        --header-height: 88px;
+      }
+      * {
+        box-sizing: border-box;
+      }
+      html {
+        overflow-x: hidden;
+        scroll-behavior: smooth;
+      }
+      body {
+        min-width: 320px;
+        margin: 0;
+        overflow-x: hidden;
+        background: #0e1118;
+        color: var(--color-text);
+        font-family: var(--font-body);
+        -webkit-font-smoothing: antialiased;
+        text-rendering: optimizeLegibility;
+      }
+      img,
+      picture,
+      svg {
+        display: block;
+        max-width: 100%;
+      }
+      img {
+        height: auto;
+      }
+      a {
+        color: inherit;
+        text-decoration: none;
+      }
+      h1,
+      h2,
+      h3,
+      p {
+        margin: 0;
+      }
+      h1,
+      h2,
+      h3 {
+        font-family: var(--font-title);
+        letter-spacing: -0.045em;
+        line-height: 0.98;
+        color: var(--color-white);
+      }
+      h1 {
+        max-width: 840px;
+        font-size: clamp(3.25rem, 7.5vw, 7.35rem);
+        line-height: 0.92;
+        text-wrap: balance;
+      }
+      p {
+        color: var(--color-muted);
+      }
+      .container {
+        width: min(100% - 40px, 1184px);
+        margin-inline: auto;
+      }
+      .header {
+        position: fixed;
+        top: 0;
+        left: 0;
+        z-index: 900;
+        width: 100%;
+        height: var(--header-height);
+        display: flex;
+        align-items: center;
+      }
+      .header-container {
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        gap: 24px;
+      }
+      .brand-logo {
+        width: 156px;
+        max-height: 46px;
+        object-fit: contain;
+      }
+      .nav {
+        display: flex;
+        align-items: center;
+        gap: 32px;
+        padding: 10px 18px;
+        border: 1px solid var(--color-line);
+        border-radius: 999px;
+        background: rgba(255, 255, 255, 0.035);
+        backdrop-filter: blur(14px);
+      }
+      .nav a {
+        color: rgba(255, 255, 255, 0.76);
+        font-size: 0.92rem;
+        font-weight: 700;
+      }
+      .header-cta,
+      .btn {
+        display: inline-flex;
+        align-items: center;
+        justify-content: center;
+        min-height: 52px;
+        border-radius: 999px;
+        font-weight: 800;
+      }
+      .header-cta {
+        padding: 0 20px;
+        border: 1px solid rgba(79, 124, 255, 0.42);
+        background: rgba(79, 124, 255, 0.14);
+      }
+      .hero {
+        min-height: 100svh;
+        padding: calc(var(--header-height) + 64px) 0 80px;
+        display: flex;
+        align-items: center;
+        overflow: hidden;
+      }
+      .hero-container {
+        width: min(100% - 40px, var(--container-wide));
+        display: grid;
+        grid-template-columns: minmax(0, 1.02fr) minmax(360px, 0.78fr);
+        align-items: center;
+        gap: clamp(40px, 6vw, 88px);
+        margin-inline: auto;
+      }
+      .hero-content {
+        display: grid;
+        gap: 24px;
+      }
+      .hero-text {
+        max-width: 680px;
+        font-size: clamp(1.05rem, 1.5vw, 1.25rem);
+      }
+      .hero-actions {
+        display: flex;
+        flex-wrap: wrap;
+        align-items: center;
+        gap: 16px;
+        margin-top: 16px;
+      }
+      .btn {
+        gap: 10px;
+        min-height: 56px;
+        padding: 0 24px;
+        line-height: 1;
+      }
+      .btn-primary {
+        border: 1px solid rgba(255, 255, 255, 0.12);
+        background: var(--gradient-main);
+        color: #fff;
+      }
+      .btn-secondary {
+        border: 1px solid rgba(255, 255, 255, 0.16);
+        background: rgba(255, 255, 255, 0.065);
+        color: #fff;
+      }
+      .hero-visual picture {
+        position: relative;
+        display: block;
+        border-radius: clamp(28px, 4vw, 44px);
+        overflow: hidden;
+        background: #1b2130;
+      }
+      .hero-visual img {
+        width: 100%;
+        aspect-ratio: 0.86/1;
+        object-fit: cover;
+      }
+      @media (max-width: 1180px) {
+        .hero-container {
+          grid-template-columns: 1fr;
+        }
+        .hero-visual {
+          max-width: 720px;
+          margin-inline: auto;
+        }
+      }
+      @media (max-width: 760px) {
+        :root {
+          --header-height: 76px;
+        }
+        .container,
+        .hero-container {
+          width: min(100% - 32px, 1184px);
+        }
+        .hero {
+          min-height: auto;
+          padding: calc(var(--header-height) + 40px) 0 80px;
+        }
+        .nav {
+          display: none;
+        }
+        .header-cta {
+          display: none;
+        }
+        .hero-actions {
+          width: 100%;
+          flex-direction: column;
+          align-items: stretch;
+        }
+        .btn {
+          width: 100%;
+          min-height: 58px;
+          white-space: normal;
+          text-align: center;
+        }
+        .hero-visual img {
+          aspect-ratio: 1/1.08;
+        }
+      }
+    </style>
+    <link
+      as="style"
+      href="css/style.css"
+      onload="
+        this.onload = null;
+        this.rel = 'stylesheet';
+      "
+      rel="preload"
+    />
+    <noscript data-css-fallback="true"
+      ><link href="css/style.css" rel="stylesheet"
+    /></noscript>
     <script type="application/ld+json">
       {
         "@context": "https://schema.org",
@@ -100,114 +330,131 @@
         "serviceType": "Consultoria digital premium"
       }
     </script>
+    <link as="image" href="assets/logos/logo-elevare-white.png" rel="preload" />
   </head>
-
   <body>
-    <div class="custom-cursor" id="customCursor" aria-hidden="true">
+    <div aria-hidden="true" class="custom-cursor" id="customCursor">
       <span>Explorar</span>
     </div>
     <div
+      aria-hidden="true"
       class="custom-cursor-dot"
       id="customCursorDot"
-      aria-hidden="true"
     ></div>
-    <div class="site-loader" id="siteLoader" aria-hidden="true">
-      <img src="assets/images/loader-glow.webp" alt="" class="loader-glow" />
+    <div aria-hidden="true" class="site-loader" id="siteLoader">
       <img
-        src="assets/logos/logo-elevare-white.png"
+        alt=""
+        class="loader-glow"
+        height="56"
+        src="assets/images/loader-glow.webp"
+        width="56"
+      />
+      <img
         alt="Elevare Digital"
         class="loader-logo"
+        height="96"
+        src="assets/logos/logo-elevare-white.png"
+        width="320"
       />
     </div>
-
     <a class="skip-link" href="#main">Pular para o conteúdo principal</a>
-
     <header class="header" id="header">
       <div class="container header-container">
-        <a href="#home" class="brand" aria-label="Elevare Digital - início">
+        <a aria-label="Elevare Digital - início" class="brand" href="#home">
           <img
-            src="assets/logos/logo-elevare-white.png"
             alt="Elevare Digital"
             class="brand-logo"
+            height="96"
+            src="assets/logos/logo-elevare-white.png"
+            width="320"
           />
         </a>
-
-        <nav class="nav" id="nav" aria-label="Menu principal">
+        <nav aria-label="Menu principal" class="nav" id="nav">
           <a href="#metodo">Método</a>
           <a href="#beneficios">Benefícios</a>
           <a href="#resultados">Resultados</a>
           <a href="#contato">Contato</a>
         </nav>
-
-        <a href="#diagnostico" class="header-cta">Agendar Diagnóstico</a>
-
+        <a class="header-cta" href="#diagnostico">Agendar Diagnóstico</a>
         <button
+          aria-controls="nav"
+          aria-expanded="false"
+          aria-label="Abrir menu"
           class="menu-toggle"
           id="menuToggle"
           type="button"
-          aria-label="Abrir menu"
-          aria-expanded="false"
-          aria-controls="nav"
         >
-          <img src="assets/icons/icon-menu.svg" alt="" class="menu-icon-open" />
           <img
-            src="assets/icons/icon-close.svg"
+            alt=""
+            class="menu-icon-open"
+            height="24"
+            src="assets/icons/icon-menu.svg"
+            width="24"
+          />
+          <img
             alt=""
             class="menu-icon-close"
+            height="24"
+            src="assets/icons/icon-close.svg"
+            width="24"
           />
         </button>
       </div>
     </header>
-
     <main id="main">
       <section class="hero section-dark" id="home">
         <div class="hero-bg">
-          <img
-            src="assets/backgrounds/bg-grid-dark.avif"
-            alt=""
-            aria-hidden="true"
-          />
+          <picture
+            ><source
+              srcset="assets/backgrounds/bg-grid-dark.avif"
+              type="image/avif" />
+            <img
+              alt=""
+              aria-hidden="true"
+              height="1080"
+              src="assets/backgrounds/bg-grid-dark.avif"
+              width="1920"
+          /></picture>
         </div>
-
         <div class="container hero-container">
           <div class="hero-content reveal">
             <span class="eyebrow"
               >Mentoria digital premium para negócios ambiciosos</span
             >
-
             <h1>
               Transformamos marcas comuns em líderes digitais com estratégia,
               design de elite e presença que vende valor.
             </h1>
-
             <p class="hero-text">
               A Elevare Digital reposiciona negócios que querem sair do
               improviso, elevar percepção de preço e construir uma presença
               digital preparada para atrair clientes com mais confiança.
             </p>
-
             <div class="hero-actions">
-              <a href="#diagnostico" class="btn btn-primary"
+              <a class="btn btn-primary" href="#diagnostico"
                 >Quero um diagnóstico estratégico</a
               >
               <a
-                href="https://wa.me/5583998326680"
-                target="_blank"
-                rel="noopener noreferrer"
-                class="btn btn-secondary"
                 aria-label="Falar com a Elevare Digital pelo WhatsApp"
+                class="btn btn-secondary"
+                href="https://wa.me/5583998326680"
+                rel="noopener noreferrer"
+                target="_blank"
               >
-                <img src="assets/icons/icon-whatsapp.png" alt="" />
+                <img
+                  alt=""
+                  height="128"
+                  src="assets/icons/icon-whatsapp.png"
+                  width="128"
+                />
                 Falar no WhatsApp
               </a>
             </div>
-
-            <div class="cta-microcopy" aria-label="Diferenciais do atendimento">
+            <div aria-label="Diferenciais do atendimento" class="cta-microcopy">
               <span>Vagas limitadas para novos diagnósticos este mês</span>
               <span>Design autoral, estratégia clara e execução premium</span>
             </div>
-
-            <div class="hero-stats" aria-label="Indicadores da consultoria">
+            <div aria-label="Indicadores da consultoria" class="hero-stats">
               <div>
                 <strong>+ Clareza</strong>
                 <span>na estratégia comercial</span>
@@ -222,33 +469,31 @@
               </div>
             </div>
           </div>
-
           <div class="hero-visual reveal">
             <picture>
               <source
-                srcset="assets/images/hero-elevare-mobile.avif"
                 media="(max-width: 640px)"
+                srcset="assets/images/hero-elevare-mobile.avif"
                 type="image/avif"
               />
               <source
-                srcset="assets/images/hero-elevare-tablet.avif"
                 media="(max-width: 1024px)"
+                srcset="assets/images/hero-elevare-tablet.avif"
                 type="image/avif"
               />
               <img
-                src="assets/images/hero-elevare.avif"
                 alt="Ambiente premium de estratégia digital da Elevare Digital"
-                width="720"
-                height="840"
+                decoding="async"
                 fetchpriority="high"
+                height="840"
+                src="assets/images/hero-elevare.avif"
+                width="720"
               />
             </picture>
-
             <div class="floating-card floating-card-one">
               <span>Estratégia</span>
               <strong>Plano digital sob medida</strong>
             </div>
-
             <div class="floating-card floating-card-two">
               <span>Diagnóstico</span>
               <strong>Clareza para crescer</strong>
@@ -256,7 +501,6 @@
           </div>
         </div>
       </section>
-
       <section class="pain section-padding" id="problema">
         <div class="container">
           <div class="section-heading reveal">
@@ -270,37 +514,53 @@
               antes mesmo da primeira conversa.
             </p>
           </div>
-
           <div class="pain-grid">
             <article class="premium-card reveal">
-              <img src="assets/icons/icon-target.svg" alt="" />
+              <img
+                alt=""
+                height="42"
+                src="assets/icons/icon-target.svg"
+                width="42"
+              />
               <h3>Pouco alcance qualificado</h3>
               <p>
                 Conteúdos soltos não criam direção comercial nem atraem o
                 público certo.
               </p>
             </article>
-
             <article class="premium-card reveal">
-              <img src="assets/icons/icon-authority.svg" alt="" />
+              <img
+                alt=""
+                height="42"
+                src="assets/icons/icon-authority.svg"
+                width="42"
+              />
               <h3>Perfil com aparência amadora</h3>
               <p>
                 A marca perde confiança quando a identidade, a copy e a oferta
                 não parecem profissionais.
               </p>
             </article>
-
             <article class="premium-card reveal">
-              <img src="assets/icons/icon-ads.svg" alt="" />
+              <img
+                alt=""
+                height="42"
+                src="assets/icons/icon-ads.svg"
+                width="42"
+              />
               <h3>Anúncios sem retorno</h3>
               <p>
                 Investir sem estratégia, página e mensagem alinhadas aumenta
                 custo e reduz conversão.
               </p>
             </article>
-
             <article class="premium-card reveal">
-              <img src="assets/icons/icon-strategy.svg" alt="" />
+              <img
+                alt=""
+                height="42"
+                src="assets/icons/icon-strategy.svg"
+                width="42"
+              />
               <h3>Falta de estratégia clara</h3>
               <p>
                 Sem processo, o digital vira tentativa. Com método, vira
@@ -310,18 +570,22 @@
           </div>
         </div>
       </section>
-
       <section class="method section-padding section-dark" id="metodo">
         <div class="container method-container">
           <div class="method-visual reveal">
-            <img
-              src="assets/images/method-strategy.avif"
-              alt="Planejamento estratégico digital premium"
-              loading="lazy"
-              decoding="async"
-            />
+            <picture
+              ><source
+                srcset="assets/images/method-strategy.avif"
+                type="image/avif" />
+              <img
+                alt="Planejamento estratégico digital premium"
+                decoding="async"
+                height="720"
+                loading="lazy"
+                src="assets/images/method-strategy.avif"
+                width="960"
+            /></picture>
           </div>
-
           <div class="method-content reveal">
             <span class="eyebrow">Método Elevare</span>
             <h2>
@@ -331,7 +595,6 @@
               O método combina diagnóstico, posicionamento e execução
               inteligente para transformar presença digital em ativo comercial.
             </p>
-
             <div class="steps">
               <article class="step-card">
                 <span>01</span>
@@ -341,7 +604,6 @@
                   pontos de perda de conversão.
                 </p>
               </article>
-
               <article class="step-card">
                 <span>02</span>
                 <h3>Estratégia</h3>
@@ -350,7 +612,6 @@
                   captação e relacionamento.
                 </p>
               </article>
-
               <article class="step-card">
                 <span>03</span>
                 <h3>Crescimento</h3>
@@ -363,7 +624,6 @@
           </div>
         </div>
       </section>
-
       <section class="benefits section-padding" id="beneficios">
         <div class="container">
           <div class="section-heading reveal">
@@ -377,54 +637,78 @@
               para criar uma experiência mais profissional e persuasiva.
             </p>
           </div>
-
           <div class="benefits-grid">
             <article class="premium-card reveal">
-              <img src="assets/icons/icon-positioning.svg" alt="" />
+              <img
+                alt=""
+                height="42"
+                src="assets/icons/icon-positioning.svg"
+                width="42"
+              />
               <h3>Posicionamento premium</h3>
               <p>
                 Comunicação mais forte para o mercado perceber seu negócio como
                 escolha de maior valor.
               </p>
             </article>
-
             <article class="premium-card reveal">
-              <img src="assets/icons/icon-leads.svg" alt="" />
+              <img
+                alt=""
+                height="42"
+                src="assets/icons/icon-leads.svg"
+                width="42"
+              />
               <h3>Mais leads qualificados</h3>
               <p>
                 Estrutura pensada para atrair pessoas com maior intenção e
                 reduzir curiosos sem perfil.
               </p>
             </article>
-
             <article class="premium-card reveal">
-              <img src="assets/icons/icon-authority.svg" alt="" />
+              <img
+                alt=""
+                height="42"
+                src="assets/icons/icon-authority.svg"
+                width="42"
+              />
               <h3>Autoridade</h3>
               <p>
                 Presença digital mais confiável, com narrativa visual e
                 comercial alinhada.
               </p>
             </article>
-
             <article class="premium-card reveal">
-              <img src="assets/icons/icon-growth.svg" alt="" />
+              <img
+                alt=""
+                height="42"
+                src="assets/icons/icon-growth.svg"
+                width="42"
+              />
               <h3>Clareza comercial</h3>
               <p>
                 Oferta, comunicação e canais organizados para facilitar a
                 decisão do cliente.
               </p>
             </article>
-
             <article class="premium-card reveal">
-              <img src="assets/icons/icon-analytics.svg" alt="" />
+              <img
+                alt=""
+                height="42"
+                src="assets/icons/icon-analytics.svg"
+                width="42"
+              />
               <h3>Funil simples</h3>
               <p>
                 Um caminho claro entre atenção, interesse, contato e fechamento.
               </p>
             </article>
-
             <article class="premium-card reveal">
-              <img src="assets/icons/icon-shield.svg" alt="" />
+              <img
+                alt=""
+                height="42"
+                src="assets/icons/icon-shield.svg"
+                width="42"
+              />
               <h3>Previsibilidade</h3>
               <p>
                 Processos digitais mais consistentes para reduzir dependência de
@@ -434,7 +718,6 @@
           </div>
         </div>
       </section>
-
       <section class="automation section-padding section-dark">
         <div class="container split-container">
           <div class="split-content reveal">
@@ -446,49 +729,77 @@
               A Elevare ajuda seu negócio a estruturar captação, atendimento,
               qualificação e acompanhamento de leads com mais clareza.
             </p>
-
             <ul class="check-list">
               <li>
-                <img src="assets/icons/icon-check.svg" alt="" /> Atendimento
-                mais organizado
+                <img
+                  alt=""
+                  height="22"
+                  src="assets/icons/icon-check.svg"
+                  width="22"
+                />
+                Atendimento mais organizado
               </li>
               <li>
-                <img src="assets/icons/icon-check.svg" alt="" /> Leads com
-                melhor acompanhamento
+                <img
+                  alt=""
+                  height="22"
+                  src="assets/icons/icon-check.svg"
+                  width="22"
+                />
+                Leads com melhor acompanhamento
               </li>
               <li>
-                <img src="assets/icons/icon-check.svg" alt="" /> Processos
-                comerciais mais simples
+                <img
+                  alt=""
+                  height="22"
+                  src="assets/icons/icon-check.svg"
+                  width="22"
+                />
+                Processos comerciais mais simples
               </li>
               <li>
-                <img src="assets/icons/icon-check.svg" alt="" /> Menos perda de
-                oportunidades
+                <img
+                  alt=""
+                  height="22"
+                  src="assets/icons/icon-check.svg"
+                  width="22"
+                />
+                Menos perda de oportunidades
               </li>
             </ul>
           </div>
-
           <div class="split-visual reveal">
-            <img
-              src="assets/images/automation-system.webp"
-              alt="Sistema digital de automação comercial"
-              loading="lazy"
-              decoding="async"
-            />
+            <picture
+              ><source
+                srcset="assets/images/automation-system.webp"
+                type="image/webp" />
+              <img
+                alt="Sistema digital de automação comercial"
+                decoding="async"
+                height="720"
+                loading="lazy"
+                src="assets/images/automation-system.webp"
+                width="960"
+            /></picture>
           </div>
         </div>
       </section>
-
       <section class="mobile-performance section-padding">
         <div class="container split-container reverse">
           <div class="split-visual reveal">
-            <img
-              src="assets/images/mobile-performance.webp"
-              alt="Experiência mobile premium para conversão"
-              loading="lazy"
-              decoding="async"
-            />
+            <picture
+              ><source
+                srcset="assets/images/mobile-performance.webp"
+                type="image/webp" />
+              <img
+                alt="Experiência mobile premium para conversão"
+                decoding="async"
+                height="720"
+                loading="lazy"
+                src="assets/images/mobile-performance.webp"
+                width="960"
+            /></picture>
           </div>
-
           <div class="split-content reveal">
             <span class="eyebrow">Mobile performance</span>
             <h2>
@@ -500,16 +811,24 @@
               velocidade, botões acessíveis, mensagem objetiva e jornada sem
               fricção.
             </p>
-
             <div class="mini-grid">
               <article>
-                <img src="assets/icons/icon-mobile.svg" alt="" />
+                <img
+                  alt=""
+                  height="34"
+                  src="assets/icons/icon-mobile.svg"
+                  width="34"
+                />
                 <strong>Mobile-first</strong>
                 <span>Experiência pensada para decisão rápida.</span>
               </article>
-
               <article>
-                <img src="assets/icons/icon-clock.svg" alt="" />
+                <img
+                  alt=""
+                  height="34"
+                  src="assets/icons/icon-clock.svg"
+                  width="34"
+                />
                 <strong>Velocidade</strong>
                 <span>Performance como parte da conversão.</span>
               </article>
@@ -517,7 +836,6 @@
           </div>
         </div>
       </section>
-
       <section class="results section-padding section-dark" id="resultados">
         <div class="container">
           <div class="section-heading reveal">
@@ -530,17 +848,21 @@
               organização comercial e geração de oportunidades.
             </p>
           </div>
-
           <div class="results-layout">
             <div class="results-image reveal">
-              <img
-                src="assets/images/results-scale.avif"
-                alt="Painel de crescimento e métricas digitais"
-                loading="lazy"
-                decoding="async"
-              />
+              <picture
+                ><source
+                  srcset="assets/images/results-scale.avif"
+                  type="image/avif" />
+                <img
+                  alt="Painel de crescimento e métricas digitais"
+                  decoding="async"
+                  height="900"
+                  loading="lazy"
+                  src="assets/images/results-scale.avif"
+                  width="960"
+              /></picture>
             </div>
-
             <div class="results-cards">
               <article class="metric-card reveal">
                 <strong>Autoridade</strong>
@@ -549,14 +871,12 @@
                   valor.</span
                 >
               </article>
-
               <article class="metric-card reveal">
                 <strong>Conversão</strong>
                 <span
                   >Jornada mais clara entre primeiro contato e decisão.</span
                 >
               </article>
-
               <article class="metric-card reveal">
                 <strong>Escala</strong>
                 <span
@@ -566,21 +886,26 @@
               </article>
             </div>
           </div>
-
           <div
-            class="case-story-grid reveal"
             aria-label="Histórias visuais de transformação digital"
+            class="case-story-grid reveal"
           >
             <article
               class="case-story-card cursor-zone magnetic-item"
               data-cursor-label="Ver Case"
             >
-              <img
-                src="assets/mockups/ads-manager.webp"
-                alt="Dashboard premium de campanhas digitais"
-                loading="lazy"
-                decoding="async"
-              />
+              <picture
+                ><source
+                  srcset="assets/mockups/ads-manager.webp"
+                  type="image/webp" />
+                <img
+                  alt="Dashboard premium de campanhas digitais"
+                  decoding="async"
+                  height="640"
+                  loading="lazy"
+                  src="assets/mockups/ads-manager.webp"
+                  width="900"
+              /></picture>
               <div class="case-story-content">
                 <span>Desafio comercial</span>
                 <h3>Campanhas sem clareza de conversão</h3>
@@ -595,17 +920,22 @@
                 </p>
               </div>
             </article>
-
             <article
               class="case-story-card is-offset cursor-zone magnetic-item"
               data-cursor-label="Explorar"
             >
-              <img
-                src="assets/mockups/growth-report.webp"
-                alt="Relatório premium de crescimento digital"
-                loading="lazy"
-                decoding="async"
-              />
+              <picture
+                ><source
+                  srcset="assets/mockups/growth-report.webp"
+                  type="image/webp" />
+                <img
+                  alt="Relatório premium de crescimento digital"
+                  decoding="async"
+                  height="640"
+                  loading="lazy"
+                  src="assets/mockups/growth-report.webp"
+                  width="900"
+              /></picture>
               <div class="case-story-content">
                 <span>Sacada de posicionamento</span>
                 <h3>Métricas apresentadas como ativo de autoridade</h3>
@@ -619,17 +949,22 @@
                 </p>
               </div>
             </article>
-
             <article
               class="case-story-card cursor-zone magnetic-item"
               data-cursor-label="Ver Case"
             >
-              <img
-                src="assets/mockups/mobile-social-ui.webp"
-                alt="Interface mobile premium de presença social"
-                loading="lazy"
-                decoding="async"
-              />
+              <picture
+                ><source
+                  srcset="assets/mockups/mobile-social-ui.webp"
+                  type="image/webp" />
+                <img
+                  alt="Interface mobile premium de presença social"
+                  decoding="async"
+                  height="640"
+                  loading="lazy"
+                  src="assets/mockups/mobile-social-ui.webp"
+                  width="900"
+              /></picture>
               <div class="case-story-content">
                 <span>Impacto percebido</span>
                 <h3>Experiência mobile com aparência high-ticket</h3>
@@ -646,34 +981,36 @@
           </div>
         </div>
       </section>
-
       <section class="branding section-padding">
         <div class="container split-container">
           <div class="split-content reveal">
-            <span class="eyebrow">Branding & posicionamento</span>
+            <span class="eyebrow">Branding &amp; posicionamento</span>
             <h2>De marca comum para presença digital com percepção premium.</h2>
             <p>
               Posicionamento não é só aparência. É a forma como sua marca
               comunica exclusividade, diferenciação e valor antes mesmo do
               cliente pedir uma proposta.
             </p>
-
-            <a href="#diagnostico" class="btn btn-primary"
+            <a class="btn btn-primary" href="#diagnostico"
               >Quero elevar minha marca</a
             >
           </div>
-
           <div class="split-visual reveal">
-            <img
-              src="assets/images/branding-positioning.avif"
-              alt="Branding e posicionamento digital premium"
-              loading="lazy"
-              decoding="async"
-            />
+            <picture
+              ><source
+                srcset="assets/images/branding-positioning.avif"
+                type="image/avif" />
+              <img
+                alt="Branding e posicionamento digital premium"
+                decoding="async"
+                height="720"
+                loading="lazy"
+                src="assets/images/branding-positioning.avif"
+                width="960"
+            /></picture>
           </div>
         </div>
       </section>
-
       <section
         class="form-section section-padding section-dark"
         id="diagnostico"
@@ -690,76 +1027,74 @@
               caminho para posicionamento, captação e crescimento do seu
               negócio.
             </p>
-
-            <img
-              src="assets/images/form-visual.webp"
-              alt="Visual premium de formulário estratégico"
-              loading="lazy"
-              decoding="async"
-              class="form-visual"
-            />
+            <picture
+              ><source
+                srcset="assets/images/form-visual.webp"
+                type="image/webp" />
+              <img
+                alt="Visual premium de formulário estratégico"
+                class="form-visual"
+                decoding="async"
+                height="520"
+                loading="lazy"
+                src="assets/images/form-visual.webp"
+                width="960"
+            /></picture>
           </div>
-
           <form
-            name="lead-elevare"
-            method="POST"
-            data-netlify="true"
-            netlify-honeypot="bot-field"
             class="lead-form reveal"
+            data-netlify="true"
             id="leadForm"
+            method="POST"
+            name="lead-elevare"
+            netlify-honeypot="bot-field"
           >
-            <input type="hidden" name="form-name" value="lead-elevare" />
-
+            <input name="form-name" type="hidden" value="lead-elevare" />
             <p class="hidden-field">
               <label>Não preencha este campo: <input name="bot-field" /></label>
             </p>
-
             <div class="form-row">
               <label for="nome">Nome</label>
               <input
-                type="text"
+                autocomplete="name"
                 id="nome"
                 name="nome"
-                autocomplete="name"
-                required
+                required=""
+                type="text"
               />
             </div>
-
             <div class="form-row">
               <label for="email">E-mail</label>
               <input
-                type="email"
+                autocomplete="email"
                 id="email"
                 name="email"
-                autocomplete="email"
-                required
+                required=""
+                type="email"
               />
             </div>
-
             <div class="form-row">
               <label for="whatsapp">WhatsApp</label>
               <input
-                type="tel"
+                autocomplete="tel"
                 id="whatsapp"
                 name="whatsapp"
-                autocomplete="tel"
-                required
+                required=""
+                type="tel"
               />
             </div>
-
             <div class="form-row">
               <label for="tipo-negocio">Tipo de negócio</label>
               <input
-                type="text"
                 id="tipo-negocio"
                 name="tipo-negocio"
-                required
+                required=""
+                type="text"
               />
             </div>
-
             <div class="form-row">
               <label for="faturamento">Faturamento atual</label>
-              <select id="faturamento" name="faturamento" required>
+              <select id="faturamento" name="faturamento" required="">
                 <option value="">Selecione uma opção</option>
                 <option value="Ainda não faturo">Ainda não faturo</option>
                 <option value="Até R$ 10 mil/mês">Até R$ 10 mil/mês</option>
@@ -774,10 +1109,9 @@
                 </option>
               </select>
             </div>
-
             <div class="form-row">
               <label for="objetivo">Objetivo principal</label>
-              <select id="objetivo" name="objetivo" required>
+              <select id="objetivo" name="objetivo" required="">
                 <option value="">Selecione uma opção</option>
                 <option value="Melhorar posicionamento">
                   Melhorar posicionamento
@@ -792,32 +1126,33 @@
                 <option value="Escalar campanhas">Escalar campanhas</option>
               </select>
             </div>
-
             <div class="form-row full">
               <label for="mensagem">Mensagem</label>
               <textarea
                 id="mensagem"
                 name="mensagem"
+                required=""
                 rows="5"
-                required
               ></textarea>
             </div>
-
-            <button type="submit" class="btn btn-primary form-submit">
+            <button class="btn btn-primary form-submit" type="submit">
               Enviar diagnóstico
-              <img src="assets/icons/icon-arrow.svg" alt="" />
+              <img
+                alt=""
+                height="18"
+                src="assets/icons/icon-arrow.svg"
+                width="18"
+              />
             </button>
-
             <p
+              aria-live="polite"
               class="form-feedback"
               id="formFeedback"
               role="status"
-              aria-live="polite"
             ></p>
           </form>
         </div>
       </section>
-
       <section class="contact section-padding" id="contato">
         <div class="container contact-container">
           <div class="contact-content reveal">
@@ -835,54 +1170,65 @@
               cirúrgico para cada marca.
             </p>
           </div>
-
           <div class="contact-cards">
             <a
-              href="https://wa.me/5583998326680"
-              target="_blank"
-              rel="noopener noreferrer"
-              class="contact-card reveal"
               aria-label="Entrar em contato pelo WhatsApp"
+              class="contact-card reveal"
+              href="https://wa.me/5583998326680"
+              rel="noopener noreferrer"
+              target="_blank"
             >
-              <img src="assets/icons/icon-whatsapp.png" alt="" />
+              <img
+                alt=""
+                height="128"
+                src="assets/icons/icon-whatsapp.png"
+                width="128"
+              />
               <span>WhatsApp</span>
               <strong>+55 (83) 99832-6680</strong>
             </a>
-
             <a
-              href="https://instagram.com/elevaredigital"
-              target="_blank"
-              rel="noopener noreferrer"
-              class="contact-card reveal"
               aria-label="Acessar Instagram da Elevare Digital"
+              class="contact-card reveal"
+              href="https://instagram.com/elevaredigital"
+              rel="noopener noreferrer"
+              target="_blank"
             >
-              <img src="assets/icons/icon-instagram.png" alt="" />
+              <img
+                alt=""
+                height="128"
+                src="assets/icons/icon-instagram.png"
+                width="128"
+              />
               <span>Instagram</span>
               <strong>@elevaredigital</strong>
             </a>
           </div>
-
           <div class="contact-visual reveal">
-            <img
-              src="assets/images/contact-premium.avif"
-              alt="Contato digital premium da Elevare Digital"
-              loading="lazy"
-              decoding="async"
-            />
+            <picture
+              ><source
+                srcset="assets/images/contact-premium.avif"
+                type="image/avif" />
+              <img
+                alt="Contato digital premium da Elevare Digital"
+                decoding="async"
+                height="720"
+                loading="lazy"
+                src="assets/images/contact-premium.avif"
+                width="960"
+            /></picture>
           </div>
         </div>
       </section>
-
       <section class="faq section-padding section-dark" id="faq">
         <div class="container faq-container">
           <div class="section-heading reveal">
             <span class="eyebrow">FAQ</span>
             <h2>Dúvidas comuns antes do diagnóstico.</h2>
           </div>
-
           <div class="faq-list reveal">
             <article class="faq-item">
-              <button class="faq-question" type="button" aria-expanded="false">
+              <button aria-expanded="false" class="faq-question" type="button">
                 A mentoria serve para negócios iniciantes?
                 <span></span>
               </button>
@@ -894,9 +1240,8 @@
                 </p>
               </div>
             </article>
-
             <article class="faq-item">
-              <button class="faq-question" type="button" aria-expanded="false">
+              <button aria-expanded="false" class="faq-question" type="button">
                 A Elevare também orienta anúncios?
                 <span></span>
               </button>
@@ -908,9 +1253,8 @@
                 </p>
               </div>
             </article>
-
             <article class="faq-item">
-              <button class="faq-question" type="button" aria-expanded="false">
+              <button aria-expanded="false" class="faq-question" type="button">
                 Em quanto tempo consigo perceber evolução?
                 <span></span>
               </button>
@@ -923,9 +1267,8 @@
                 </p>
               </div>
             </article>
-
             <article class="faq-item">
-              <button class="faq-question" type="button" aria-expanded="false">
+              <button aria-expanded="false" class="faq-question" type="button">
                 O atendimento é online?
                 <span></span>
               </button>
@@ -936,9 +1279,8 @@
                 </p>
               </div>
             </article>
-
             <article class="faq-item">
-              <button class="faq-question" type="button" aria-expanded="false">
+              <button aria-expanded="false" class="faq-question" type="button">
                 O diagnóstico é obrigatório antes da proposta?
                 <span></span>
               </button>
@@ -952,19 +1294,23 @@
           </div>
         </div>
       </section>
-
       <section class="final-cta section-padding">
         <div class="container final-cta-container reveal">
           <div class="final-cta-bg">
-            <img
-              src="assets/images/final-cta.avif"
-              alt=""
-              aria-hidden="true"
-              loading="lazy"
-              decoding="async"
-            />
+            <picture
+              ><source
+                srcset="assets/images/final-cta.avif"
+                type="image/avif" />
+              <img
+                alt=""
+                aria-hidden="true"
+                decoding="async"
+                height="900"
+                loading="lazy"
+                src="assets/images/final-cta.avif"
+                width="1600"
+            /></picture>
           </div>
-
           <div class="final-cta-content">
             <span class="eyebrow">Próximo nível</span>
             <h2>
@@ -975,25 +1321,28 @@
               O primeiro passo é entender onde sua presença atual está travando
               crescimento, autoridade e conversão.
             </p>
-
             <div class="hero-actions">
-              <a href="#diagnostico" class="btn btn-primary"
+              <a class="btn btn-primary" href="#diagnostico"
                 >Agendar diagnóstico</a
               >
               <a
-                href="https://wa.me/5583998326680"
-                target="_blank"
-                rel="noopener noreferrer"
                 class="btn btn-secondary"
+                href="https://wa.me/5583998326680"
+                rel="noopener noreferrer"
+                target="_blank"
               >
-                <img src="assets/icons/icon-whatsapp.png" alt="" />
+                <img
+                  alt=""
+                  height="128"
+                  src="assets/icons/icon-whatsapp.png"
+                  width="128"
+                />
                 Conversar agora
               </a>
             </div>
-
             <div
-              class="cta-microcopy cta-microcopy-final"
               aria-label="Confiança e exclusividade"
+              class="cta-microcopy cta-microcopy-final"
             >
               <span>Atendimento estratégico e personalizado</span>
               <span>Sua marca em outro nível com direção visual premium</span>
@@ -1002,20 +1351,20 @@
         </div>
       </section>
     </main>
-
     <footer class="footer">
       <div class="container footer-container">
         <div class="footer-brand">
           <img
-            src="assets/logos/logo-elevare-white.png"
             alt="Elevare Digital"
+            height="96"
+            src="assets/logos/logo-elevare-white.png"
+            width="320"
           />
           <p>
             Mentoria e consultoria digital premium para negócios que querem
             crescer com estratégia, autoridade e presença profissional.
           </p>
         </div>
-
         <div class="footer-links">
           <h3>Navegação</h3>
           <a href="#home">Início</a>
@@ -1023,41 +1372,42 @@
           <a href="#beneficios">Benefícios</a>
           <a href="#diagnostico">Diagnóstico</a>
         </div>
-
         <div class="footer-links">
           <h3>Contato</h3>
           <a
             href="https://wa.me/5583998326680"
-            target="_blank"
             rel="noopener noreferrer"
+            target="_blank"
             >WhatsApp</a
           >
           <a
             href="https://instagram.com/elevaredigital"
-            target="_blank"
             rel="noopener noreferrer"
+            target="_blank"
             >Instagram</a
           >
           <a href="politica-de-privacidade.html">Política de privacidade</a>
         </div>
       </div>
-
       <div class="container footer-bottom">
         <p>© 2026 Elevare Digital. Todos os direitos reservados.</p>
         <p>Desenvolvido por Segundo Almeida.</p>
       </div>
     </footer>
-
     <a
-      href="https://wa.me/5583998326680"
-      class="floating-whatsapp"
-      target="_blank"
-      rel="noopener noreferrer"
       aria-label="Falar com a Elevare Digital pelo WhatsApp"
+      class="floating-whatsapp"
+      href="https://wa.me/5583998326680"
+      rel="noopener noreferrer"
+      target="_blank"
     >
-      <img src="assets/icons/icon-whatsapp.png" alt="" />
+      <img
+        alt=""
+        height="128"
+        src="assets/icons/icon-whatsapp.png"
+        width="128"
+      />
     </a>
-
-    <script src="js/script.js" defer></script>
+    <script defer="" src="js/script.js"></script>
   </body>
 </html>
