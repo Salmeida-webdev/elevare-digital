@@ -830,6 +830,7 @@ section {
 
 .benefits-grid {
   grid-template-columns: repeat(3, 1fr);
+  align-items: start;
 }
 
 .premium-card {
@@ -876,20 +877,43 @@ section {
   pointer-events: none;
 }
 
-.pain-grid .premium-card:nth-child(even),
-.benefits-grid .premium-card:nth-child(2),
-.benefits-grid .premium-card:nth-child(5) {
+.pain-grid .premium-card:nth-child(even) {
   transform: translateY(24px);
 }
 
-.pain-grid .premium-card:nth-child(3),
-.benefits-grid .premium-card:nth-child(3) {
+.pain-grid .premium-card:nth-child(3) {
   transform: translateY(-12px);
+}
+
+.benefits-grid .premium-card {
+  min-height: 280px;
+}
+
+.benefits-grid .premium-card:nth-child(1),
+.benefits-grid .premium-card:nth-child(3),
+.benefits-grid .premium-card:nth-child(5) {
+  transform: translateY(0);
+}
+
+.benefits-grid .premium-card:nth-child(2),
+.benefits-grid .premium-card:nth-child(4),
+.benefits-grid .premium-card:nth-child(6) {
+  transform: translateY(32px);
 }
 
 .premium-card:hover {
   transform: translateY(-8px);
   border-color: rgba(79, 124, 255, 0.44);
+}
+
+.benefits-grid .premium-card:hover {
+  transform: translateY(-6px);
+}
+
+.benefits-grid .premium-card:nth-child(2):hover,
+.benefits-grid .premium-card:nth-child(4):hover,
+.benefits-grid .premium-card:nth-child(6):hover {
+  transform: translateY(24px);
 }
 
 .premium-card:hover::before {
@@ -1383,17 +1407,19 @@ section {
       0,
       0.84fr
     );
+  align-items: center;
 }
 
 .contact-cards {
   display: grid;
   gap: var(--space-3);
+  align-self: center;
 }
 
 .contact-card {
   display: grid;
   gap: 8px;
-  min-height: 172px;
+  min-height: 220px;
   padding: var(--space-4);
   border: 1px solid var(--color-line);
   border-radius: var(--radius-xl);
@@ -1434,8 +1460,20 @@ section {
   word-break: break-word;
 }
 
+.contact-visual {
+  align-self: center;
+  max-height: 520px;
+}
+
 .contact-visual img {
   min-height: 420px;
+  max-height: 520px;
+  object-fit: cover;
+}
+
+.contact.section-padding {
+  padding-top: 120px;
+  padding-bottom: 120px;
 }
 
 /* -----------------------------
@@ -1738,6 +1776,21 @@ section {
 
   .contact-visual {
     max-width: 760px;
+    max-height: none;
+  }
+
+  .contact-container {
+    gap: 48px;
+  }
+
+  .contact-scarcity,
+  .scarcity-note {
+    max-width: 100%;
+  }
+
+  .benefits-grid .premium-card:nth-child(n),
+  .benefits-grid .premium-card:hover {
+    transform: none;
   }
 }
 
@@ -2071,44 +2124,414 @@ section {
   content-visibility: auto;
   contain-intrinsic-size: 900px;
 }
-/* Refinamento editorial dos cards — stagger mais matemático */
 
-.benefits-grid {
-  align-items: start;
+/* =========================================================
+   20. Refinamento Agência 9.8 — Direção de Arte Internacional
+   Tipografia esculpida • sombras pigmentadas • cursor contextual
+   ========================================================= */
+
+/* Tipografia esculpida com gradientes foscos */
+.hero h1,
+.section-heading h2,
+.split-content h2,
+.method-content h2,
+.form-content h2,
+.contact-content h2,
+.final-cta-content h2 {
+  background: linear-gradient(
+    180deg,
+    #ffffff 0%,
+    #e7ebf4 38%,
+    #b9c2d4 72%,
+    #8792a9 100%
+  );
+  -webkit-background-clip: text;
+  background-clip: text;
+  color: transparent;
+  -webkit-text-fill-color: transparent;
+  text-shadow: 0 24px 70px rgba(16, 25, 48, 0.34);
 }
 
-.benefits-grid .premium-card {
-  min-height: 280px;
+/* Espaço negativo de grife */
+.section-padding {
+  padding: clamp(112px, 12vw, 152px) 0;
 }
 
-.benefits-grid .premium-card:nth-child(1),
-.benefits-grid .premium-card:nth-child(3),
-.benefits-grid .premium-card:nth-child(5) {
-  transform: translateY(0);
+/* Sombras pigmentadas e fusão com fundo azulado */
+.premium-card,
+.metric-card,
+.case-story-card,
+.contact-card,
+.step-card,
+.lead-form,
+.final-cta-container,
+.split-visual,
+.method-visual,
+.results-image,
+.contact-visual,
+.floating-card {
+  box-shadow:
+    0 42px 130px rgba(5, 10, 24, 0.52),
+    0 14px 46px rgba(19, 32, 61, 0.24),
+    0 2px 18px rgba(79, 124, 255, 0.07);
 }
 
-.benefits-grid .premium-card:nth-child(2),
-.benefits-grid .premium-card:nth-child(4),
-.benefits-grid .premium-card:nth-child(6) {
-  transform: translateY(32px);
+/* Linhas de luz internas — vidro fosco real */
+.premium-card::after,
+.metric-card::after,
+.case-story-card::after,
+.contact-card::after,
+.step-card::after,
+.lead-form::after,
+.final-cta-container::after,
+.floating-card::after {
+  content: "";
+  position: absolute;
+  top: 0;
+  left: 1px;
+  right: 1px;
+  height: 1px;
+  border-radius: inherit;
+  background: linear-gradient(
+    90deg,
+    rgba(255, 255, 255, 0),
+    rgba(255, 255, 255, 0.28),
+    rgba(123, 97, 255, 0.12),
+    rgba(255, 255, 255, 0)
+  );
+  pointer-events: none;
+  z-index: 3;
 }
 
-.benefits-grid .premium-card:hover {
-  transform: translateY(-6px);
+.lead-form,
+.final-cta-container {
+  position: relative;
 }
 
-.benefits-grid .premium-card:nth-child(2):hover,
-.benefits-grid .premium-card:nth-child(4):hover,
-.benefits-grid .premium-card:nth-child(6):hover {
-  transform: translateY(24px);
+/* Cases editoriais — sobreposição controlada e leitura premium */
+.case-story-grid {
+  align-items: stretch;
+  gap: clamp(24px, 3vw, 40px);
 }
 
+.case-story-card {
+  display: flex;
+  flex-direction: column;
+}
+
+.case-story-card.is-offset {
+  margin-top: 40px;
+}
+
+.case-story-card:nth-child(2),
+.case-story-card:nth-child(3) {
+  margin-top: 0;
+}
+
+.case-story-card img,
+.case-story-card:nth-child(1) img,
+.case-story-card:nth-child(2) img,
+.case-story-card:nth-child(3) img {
+  width: 100%;
+  aspect-ratio: 16 / 10;
+  min-height: 320px;
+  object-fit: cover;
+}
+
+.case-story-content {
+  position: relative;
+  z-index: 2;
+  display: grid;
+  gap: 10px;
+  margin: -56px 24px 0;
+  padding: 28px;
+  border: 1px solid rgba(255, 255, 255, 0.095);
+  border-radius: 24px;
+  background: rgba(16, 21, 33, 0.9);
+  box-shadow:
+    0 34px 90px rgba(4, 8, 18, 0.46),
+    0 2px 14px rgba(79, 124, 255, 0.08);
+  backdrop-filter: blur(22px);
+}
+
+.case-story-content h3 {
+  font-size: clamp(1.35rem, 2vw, 2rem);
+  line-height: 1.05;
+}
+
+.case-story-content p {
+  font-size: 0.98rem;
+  line-height: 1.65;
+}
+
+.case-impact {
+  margin-top: 10px;
+  padding-top: 14px;
+  border-top: 1px solid rgba(255, 255, 255, 0.09);
+  color: rgba(220, 229, 255, 0.82);
+  font-size: 0.88rem;
+  font-weight: 800;
+  line-height: 1.55;
+}
+
+/* Escassez elegante na seção contato */
+.contact-content {
+  align-self: center;
+}
+
+.contact-scarcity,
+.scarcity-note {
+  position: relative;
+  max-width: 520px;
+  margin-top: 32px;
+  padding: 28px 30px;
+  border: 1px solid rgba(255, 255, 255, 0.095);
+  border-radius: 28px;
+  background:
+    radial-gradient(
+      circle at top left,
+      rgba(79, 124, 255, 0.14),
+      transparent 38%
+    ),
+    rgba(20, 26, 39, 0.78);
+  color: rgba(238, 242, 255, 0.86);
+  font-size: clamp(1rem, 1.25vw, 1.18rem);
+  font-weight: 800;
+  line-height: 1.55;
+  box-shadow:
+    0 34px 90px rgba(4, 8, 18, 0.42),
+    0 2px 14px rgba(79, 124, 255, 0.08);
+  backdrop-filter: blur(22px);
+}
+
+.scarcity-note p {
+  color: inherit;
+  font-size: inherit;
+  font-weight: inherit;
+  line-height: inherit;
+}
+
+/* Microinterações magnéticas */
+.btn,
+.header-cta,
+.premium-card,
+.metric-card,
+.case-story-card,
+.contact-card {
+  transform-style: preserve-3d;
+  will-change: transform;
+}
+
+.magnetic-active {
+  transition: transform 120ms ease-out;
+}
+
+/* Cursor customizado contextual */
+.custom-cursor,
+.custom-cursor-dot {
+  position: fixed;
+  left: 0;
+  top: 0;
+  z-index: 10000;
+  pointer-events: none;
+  transform: translate3d(-50%, -50%, 0);
+  opacity: 0;
+}
+
+.custom-cursor {
+  width: 18px;
+  height: 18px;
+  display: grid;
+  place-items: center;
+  border: 1px solid rgba(220, 229, 255, 0.52);
+  border-radius: 999px;
+  background:
+    radial-gradient(
+      circle at center,
+      rgba(79, 124, 255, 0.22),
+      rgba(123, 97, 255, 0.08)
+    ),
+    rgba(255, 255, 255, 0.035);
+  box-shadow:
+    0 0 0 1px rgba(255, 255, 255, 0.04),
+    0 20px 60px rgba(79, 124, 255, 0.2);
+  backdrop-filter: blur(10px);
+  mix-blend-mode: screen;
+  transition:
+    width 260ms ease,
+    height 260ms ease,
+    opacity 180ms ease,
+    border-color 260ms ease,
+    background 260ms ease;
+}
+
+.custom-cursor span {
+  opacity: 0;
+  color: #ffffff;
+  font-size: 0.68rem;
+  font-weight: 900;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  white-space: nowrap;
+  transition: opacity 180ms ease;
+}
+
+.custom-cursor-dot {
+  width: 4px;
+  height: 4px;
+  border-radius: 999px;
+  background: #ffffff;
+  box-shadow: 0 0 18px rgba(79, 124, 255, 0.7);
+}
+
+body.has-custom-cursor .custom-cursor,
+body.has-custom-cursor .custom-cursor-dot {
+  opacity: 1;
+}
+
+body.cursor-expanded .custom-cursor {
+  width: 92px;
+  height: 92px;
+  border-color: rgba(79, 124, 255, 0.42);
+  background:
+    radial-gradient(
+      circle at center,
+      rgba(79, 124, 255, 0.22),
+      rgba(123, 97, 255, 0.12)
+    ),
+    rgba(9, 12, 18, 0.46);
+}
+
+body.cursor-expanded .custom-cursor span {
+  opacity: 1;
+}
+
+/* Reveals orgânicos assíncronos */
+.reveal {
+  opacity: 0;
+  transform: translateY(34px) scale(0.985);
+  filter: blur(8px);
+  transition:
+    opacity 900ms cubic-bezier(0.16, 1, 0.3, 1),
+    transform 900ms cubic-bezier(0.16, 1, 0.3, 1),
+    filter 900ms cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+.reveal.is-visible {
+  opacity: 1;
+  transform: translateY(0) scale(1);
+  filter: blur(0);
+}
+
+.section-heading.reveal {
+  transform: translateY(24px) scale(0.99);
+}
+
+.hero-content.reveal,
+.final-cta-content.reveal {
+  transition-duration: 1080ms;
+}
+
+/* Correções de responsividade para os refinamentos 9.8 */
 @media (max-width: 1180px) {
-  .benefits-grid .premium-card:nth-child(n) {
-    transform: none;
+  .section-padding {
+    padding: clamp(96px, 12vw, 128px) 0;
   }
 
-  .benefits-grid .premium-card:hover {
+  .case-story-grid {
+    grid-template-columns: 1fr;
+  }
+
+  .case-story-card:nth-child(n) {
+    margin-top: 0;
+  }
+
+  .case-story-card:nth-child(n) img {
+    aspect-ratio: 16 / 10;
+  }
+
+  .case-story-content {
+    margin: -40px 18px 0;
+  }
+}
+
+@media (max-width: 760px) {
+  .section-padding {
+    padding: 96px 0;
+  }
+
+  .contact.section-padding {
+    padding-top: 88px;
+    padding-bottom: 88px;
+  }
+
+  .hero h1,
+  .section-heading h2,
+  .split-content h2,
+  .method-content h2,
+  .form-content h2,
+  .contact-content h2,
+  .final-cta-content h2 {
+    text-shadow: 0 18px 52px rgba(16, 25, 48, 0.28);
+  }
+
+  .case-story-card img,
+  .case-story-card:nth-child(n) img {
+    min-height: 260px;
+  }
+
+  .case-story-content {
+    margin: -32px 14px 0;
+    padding: 22px;
+  }
+
+  .contact-scarcity,
+  .scarcity-note {
+    margin-top: 24px;
+    padding: 22px;
+    border-radius: 24px;
+    font-size: 0.92rem;
+  }
+
+  .contact-card {
+    min-height: auto;
+  }
+
+  .contact-visual img {
+    min-height: 300px;
+  }
+
+  .custom-cursor,
+  .custom-cursor-dot {
+    display: none;
+  }
+}
+
+@media (hover: none), (pointer: coarse) {
+  .custom-cursor,
+  .custom-cursor-dot {
+    display: none;
+  }
+
+  .btn,
+  .header-cta,
+  .premium-card,
+  .metric-card,
+  .case-story-card,
+  .contact-card {
+    transform: none !important;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .custom-cursor,
+  .custom-cursor-dot {
+    display: none;
+  }
+
+  .reveal {
+    opacity: 1;
     transform: none;
+    filter: none;
   }
 }

@@ -103,6 +103,14 @@
   </head>
 
   <body>
+    <div class="custom-cursor" id="customCursor" aria-hidden="true">
+      <span>Explorar</span>
+    </div>
+    <div
+      class="custom-cursor-dot"
+      id="customCursorDot"
+      aria-hidden="true"
+    ></div>
     <div class="site-loader" id="siteLoader" aria-hidden="true">
       <img src="assets/images/loader-glow.webp" alt="" class="loader-glow" />
       <img
@@ -563,7 +571,10 @@
             class="case-story-grid reveal"
             aria-label="Histórias visuais de transformação digital"
           >
-            <article class="case-story-card">
+            <article
+              class="case-story-card cursor-zone magnetic-item"
+              data-cursor-label="Ver Case"
+            >
               <img
                 src="assets/mockups/ads-manager.webp"
                 alt="Dashboard premium de campanhas digitais"
@@ -578,10 +589,17 @@
                   marca entendesse onde investir, o que ajustar e como reduzir
                   decisões baseadas em tentativa.
                 </p>
+                <p class="case-impact">
+                  Impacto: leitura comercial mais clara e decisões digitais com
+                  maior precisão estratégica.
+                </p>
               </div>
             </article>
 
-            <article class="case-story-card is-offset">
+            <article
+              class="case-story-card is-offset cursor-zone magnetic-item"
+              data-cursor-label="Explorar"
+            >
               <img
                 src="assets/mockups/growth-report.webp"
                 alt="Relatório premium de crescimento digital"
@@ -595,10 +613,17 @@
                   Transformamos dados em narrativa visual para aumentar
                   percepção de controle, profissionalismo e maturidade digital.
                 </p>
+                <p class="case-impact">
+                  Impacto: elevação da autoridade visual e consolidação de
+                  maturidade digital em poucos pontos de contato.
+                </p>
               </div>
             </article>
 
-            <article class="case-story-card">
+            <article
+              class="case-story-card cursor-zone magnetic-item"
+              data-cursor-label="Ver Case"
+            >
               <img
                 src="assets/mockups/mobile-social-ui.webp"
                 alt="Interface mobile premium de presença social"
@@ -611,6 +636,10 @@
                 <p>
                   Criamos uma presença mais fluida, rápida e confiável para que
                   o primeiro contato no celular já transmitisse valor superior.
+                </p>
+                <p class="case-impact">
+                  Impacto: experiência mobile mais sofisticada e percepção
+                  high-ticket desde o primeiro clique.
                 </p>
               </div>
             </article>
@@ -799,6 +828,11 @@
             <p>
               Atendimento online para entender o momento do seu negócio e
               indicar o melhor caminho estratégico.
+            </p>
+            <p class="contact-scarcity">
+              Desenvolvemos um número restrito de projetos por trimestre para
+              garantir exclusividade absoluta, atenção estratégica e acabamento
+              cirúrgico para cada marca.
             </p>
           </div>
 

@@ -11,7 +11,6 @@ document.addEventListener("DOMContentLoaded", () => {
   const navLinks = nav ? nav.querySelectorAll("a") : [];
 
   const faqButtons = document.querySelectorAll(".faq-question");
-
   const revealElements = document.querySelectorAll(".reveal");
 
   const leadForm = document.getElementById("leadForm");
@@ -19,13 +18,19 @@ document.addEventListener("DOMContentLoaded", () => {
 
   const floatingWhatsApp = document.querySelector(".floating-whatsapp");
 
+  const magneticElements = document.querySelectorAll(
+    ".btn, .header-cta, .premium-card, .case-story-card, .metric-card, .contact-card",
+  );
+
+  const cursor = document.getElementById("customCursor");
+  const cursorDot = document.getElementById("customCursorDot");
+  const cursorText = cursor ? cursor.querySelector("span") : null;
+
   const prefersReducedMotion = window.matchMedia(
     "(prefers-reduced-motion: reduce)",
   ).matches;
 
-  /* =========================================================
-     Loader
-  ========================================================= */
+  /* Loader */
 
   if (loader) {
     window.addEventListener(
@@ -43,9 +48,7 @@ document.addEventListener("DOMContentLoaded", () => {
     }, 1600);
   }
 
-  /* =========================================================
-     Header Scroll State
-  ========================================================= */
+  /* Header */
 
   const handleHeaderState = () => {
     const scrolled = window.scrollY > 18;
@@ -59,25 +62,17 @@ document.addEventListener("DOMContentLoaded", () => {
     }
   };
 
-  window.addEventListener("scroll", handleHeaderState, {
-    passive: true,
-  });
-
+  window.addEventListener("scroll", handleHeaderState, { passive: true });
   handleHeaderState();
 
-  /* =========================================================
-     Mobile Menu Premium Fullscreen
-  ========================================================= */
+  /* Menu mobile */
 
   const closeMenu = () => {
     if (!nav || !menuToggle) return;
 
     nav.classList.remove("is-open");
-
     menuToggle.classList.remove("is-active");
-
     menuToggle.setAttribute("aria-expanded", "false");
-
     body.classList.remove("menu-open");
   };
 
@@ -85,24 +80,15 @@ document.addEventListener("DOMContentLoaded", () => {
     if (!nav || !menuToggle) return;
 
     nav.classList.add("is-open");
-
     menuToggle.classList.add("is-active");
-
     menuToggle.setAttribute("aria-expanded", "true");
-
     body.classList.add("menu-open");
   };
 
   const toggleMenu = () => {
     if (!nav || !menuToggle) return;
 
-    const isOpen = nav.classList.contains("is-open");
-
-    if (isOpen) {
-      closeMenu();
-    } else {
-      openMenu();
-    }
+    nav.classList.contains("is-open") ? closeMenu() : openMenu();
   };
 
   if (menuToggle) {
@@ -114,16 +100,13 @@ document.addEventListener("DOMContentLoaded", () => {
   });
 
   document.addEventListener("keydown", (event) => {
-    if (event.key === "Escape") {
-      closeMenu();
-    }
+    if (event.key === "Escape") closeMenu();
   });
 
   document.addEventListener("click", (event) => {
     if (!nav || !menuToggle) return;
 
     const clickedInsideNav = nav.contains(event.target);
-
     const clickedToggle = menuToggle.contains(event.target);
 
     if (!clickedInsideNav && !clickedToggle) {
@@ -131,9 +114,7 @@ document.addEventListener("DOMContentLoaded", () => {
     }
   });
 
-  /* =========================================================
-     FAQ Accordion Premium
-  ========================================================= */
+  /* FAQ */
 
   faqButtons.forEach((button) => {
     button.addEventListener("click", () => {
@@ -156,14 +137,11 @@ document.addEventListener("DOMContentLoaded", () => {
       });
 
       currentItem.classList.toggle("is-open", !isOpen);
-
       button.setAttribute("aria-expanded", String(!isOpen));
     });
   });
 
-  /* =========================================================
-     Reveal Animations
-  ========================================================= */
+  /* Reveals */
 
   if (revealElements.length) {
     if ("IntersectionObserver" in window && !prefersReducedMotion) {
@@ -172,21 +150,25 @@ document.addEventListener("DOMContentLoaded", () => {
           entries.forEach((entry) => {
             if (!entry.isIntersecting) return;
 
-            entry.target.classList.add("is-visible");
+            const children = entry.target.querySelectorAll(
+              "h1, h2, h3, p, .btn, .premium-card, .metric-card, .case-story-card",
+            );
 
+            children.forEach((child, index) => {
+              child.style.transitionDelay = `${index * 90}ms`;
+            });
+
+            entry.target.classList.add("is-visible");
             observer.unobserve(entry.target);
           });
         },
         {
-          root: null,
-          threshold: 0.14,
-          rootMargin: "0px 0px -80px 0px",
+          threshold: 0.12,
+          rootMargin: "0px 0px -60px 0px",
         },
       );
 
-      revealElements.forEach((element, index) => {
-        element.style.transitionDelay = `${index * 40}ms`;
-
+      revealElements.forEach((element) => {
         revealObserver.observe(element);
       });
     } else {
@@ -196,9 +178,7 @@ document.addEventListener("DOMContentLoaded", () => {
     }
   }
 
-  /* =========================================================
-     Floating Cards Motion
-  ========================================================= */
+  /* Floating cards */
 
   if (!prefersReducedMotion) {
     const floatingCards = document.querySelectorAll(".floating-card");
@@ -207,28 +187,82 @@ document.addEventListener("DOMContentLoaded", () => {
       "mousemove",
       (event) => {
         const x = (window.innerWidth / 2 - event.clientX) / 90;
-
         const y = (window.innerHeight / 2 - event.clientY) / 90;
 
         floatingCards.forEach((card, index) => {
           const depth = index + 1;
 
-          card.style.transform = `
-            translate3d(${x * depth}px, ${y * depth}px, 0)
-          `;
+          card.style.transform = `translate3d(${x * depth}px, ${
+            y * depth
+          }px, 0)`;
         });
       },
       { passive: true },
     );
   }
 
-  /* =========================================================
-     Premium Form Validation
-  ========================================================= */
+  /* Magnetic hover */
+
+  if (!prefersReducedMotion) {
+    magneticElements.forEach((element) => {
+      element.addEventListener("mousemove", (event) => {
+        const rect = element.getBoundingClientRect();
+
+        const x = event.clientX - rect.left - rect.width / 2;
+        const y = event.clientY - rect.top - rect.height / 2;
+
+        element.classList.add("magnetic-active");
+        element.style.transform = `translate(${x * 0.08}px, ${y * 0.08}px)`;
+      });
+
+      element.addEventListener("mouseleave", () => {
+        element.classList.remove("magnetic-active");
+        element.style.transform = "";
+      });
+    });
+  }
+
+  /* Cursor customizado */
+
+  if (
+    cursor &&
+    cursorDot &&
+    cursorText &&
+    !prefersReducedMotion &&
+    window.innerWidth > 1024
+  ) {
+    body.classList.add("has-custom-cursor");
+
+    window.addEventListener(
+      "mousemove",
+      (event) => {
+        cursor.style.transform = `translate3d(${event.clientX}px, ${event.clientY}px, 0) translate(-50%, -50%)`;
+        cursorDot.style.transform = `translate3d(${event.clientX}px, ${event.clientY}px, 0) translate(-50%, -50%)`;
+      },
+      { passive: true },
+    );
+
+    const cursorZones = document.querySelectorAll(".cursor-zone");
+
+    cursorZones.forEach((zone) => {
+      zone.addEventListener("mouseenter", () => {
+        const label = zone.getAttribute("data-cursor-label") || "Explorar";
+
+        cursorText.textContent = label;
+        body.classList.add("cursor-expanded");
+      });
+
+      zone.addEventListener("mouseleave", () => {
+        body.classList.remove("cursor-expanded");
+        cursorText.textContent = "Explorar";
+      });
+    });
+  }
+
+  /* Formulário */
 
   const setFieldError = (field) => {
     const parent = field.closest(".form-row");
-
     if (!parent) return;
 
     parent.classList.add("is-error");
@@ -236,7 +270,6 @@ document.addEventListener("DOMContentLoaded", () => {
 
   const removeFieldError = (field) => {
     const parent = field.closest(".form-row");
-
     if (!parent) return;
 
     parent.classList.remove("is-error");
@@ -246,7 +279,6 @@ document.addEventListener("DOMContentLoaded", () => {
     if (!leadForm) return false;
 
     let isValid = true;
-
     const requiredFields = leadForm.querySelectorAll("[required]");
 
     requiredFields.forEach((field) => {
@@ -256,15 +288,12 @@ document.addEventListener("DOMContentLoaded", () => {
 
       if (!value) {
         isValid = false;
-
         setFieldError(field);
-
         return;
       }
 
       if (field.type === "email" && !field.checkValidity()) {
         isValid = false;
-
         setFieldError(field);
       }
     });
@@ -276,15 +305,12 @@ document.addEventListener("DOMContentLoaded", () => {
     if (!formFeedback) return;
 
     formFeedback.textContent = message;
-
     formFeedback.classList.remove("is-success", "is-error");
-
     formFeedback.classList.add(type === "success" ? "is-success" : "is-error");
   };
 
   const encodeFormData = (form) => {
     const formData = new FormData(form);
-
     return new URLSearchParams(formData).toString();
   };
 
@@ -292,38 +318,27 @@ document.addEventListener("DOMContentLoaded", () => {
     const formFields = leadForm.querySelectorAll("input, textarea, select");
 
     formFields.forEach((field) => {
-      field.addEventListener("input", () => {
-        removeFieldError(field);
-      });
-
-      field.addEventListener("change", () => {
-        removeFieldError(field);
-      });
+      field.addEventListener("input", () => removeFieldError(field));
+      field.addEventListener("change", () => removeFieldError(field));
     });
 
     leadForm.addEventListener("submit", async (event) => {
       event.preventDefault();
 
-      const isValid = validateLeadForm();
-
-      if (!isValid) {
+      if (!validateLeadForm()) {
         showFormFeedback(
           "Revise os campos obrigatórios antes de enviar.",
           "error",
         );
-
         return;
       }
 
       const submitButton = leadForm.querySelector(".form-submit");
-
       const originalContent = submitButton ? submitButton.innerHTML : "";
 
       if (submitButton) {
         submitButton.disabled = true;
-
         submitButton.classList.add("is-loading");
-
         submitButton.innerHTML = "Enviando diagnóstico...";
       }
 
@@ -332,17 +347,13 @@ document.addEventListener("DOMContentLoaded", () => {
       try {
         const response = await fetch("/", {
           method: "POST",
-
           headers: {
             "Content-Type": "application/x-www-form-urlencoded",
           },
-
           body: encodeFormData(leadForm),
         });
 
-        if (!response.ok) {
-          throw new Error("Erro ao enviar");
-        }
+        if (!response.ok) throw new Error("Erro ao enviar");
 
         leadForm.reset();
 
@@ -358,18 +369,14 @@ document.addEventListener("DOMContentLoaded", () => {
       } finally {
         if (submitButton) {
           submitButton.disabled = false;
-
           submitButton.classList.remove("is-loading");
-
           submitButton.innerHTML = originalContent;
         }
       }
     });
   }
 
-  /* =========================================================
-     Smooth Scroll Premium
-  ========================================================= */
+  /* Smooth scroll */
 
   document.querySelectorAll('a[href^="#"]').forEach((anchor) => {
     anchor.addEventListener("click", (event) => {
@@ -384,7 +391,6 @@ document.addEventListener("DOMContentLoaded", () => {
       event.preventDefault();
 
       const headerOffset = 96;
-
       const targetPosition =
         target.getBoundingClientRect().top + window.pageYOffset - headerOffset;
 
@@ -395,21 +401,7 @@ document.addEventListener("DOMContentLoaded", () => {
     });
   });
 
-  /* =========================================================
-     Performance Safety
-  ========================================================= */
-
-  const lazyVideos = document.querySelectorAll("video");
-
-  if (lazyVideos.length) {
-    lazyVideos.forEach((video) => {
-      video.setAttribute("preload", "none");
-    });
-  }
-
-  /* =========================================================
-     Resize Safety
-  ========================================================= */
+  /* Segurança no resize */
 
   window.addEventListener(
     "resize",
