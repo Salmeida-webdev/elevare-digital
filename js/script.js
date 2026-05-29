@@ -18,16 +18,6 @@ document.addEventListener("DOMContentLoaded", () => {
 
   const floatingWhatsApp = document.querySelector(".floating-whatsapp");
 
-  const magneticElements = window.matchMedia("(hover: hover)").matches
-    ? document.querySelectorAll(
-        ".btn, .header-cta, .premium-card, .case-story-card, .metric-card, .contact-card",
-      )
-    : [];
-
-  const cursor = document.getElementById("customCursor");
-  const cursorDot = document.getElementById("customCursorDot");
-  const cursorText = cursor ? cursor.querySelector("span") : null;
-
   const prefersReducedMotion = window.matchMedia(
     "(prefers-reduced-motion: reduce)",
   ).matches;
@@ -41,17 +31,15 @@ document.addEventListener("DOMContentLoaded", () => {
       "load",
       () => {
         requestAnimationFrame(() => {
-          window.setTimeout(() => {
-            loader.classList.add("is-hidden");
-          }, 180);
+          loader.classList.add("is-hidden");
         });
       },
       { once: true },
     );
 
-    window.setTimeout(() => {
+    setTimeout(() => {
       loader.classList.add("is-hidden");
-    }, 1400);
+    }, 1200);
   }
 
   /* =========================
@@ -167,14 +155,6 @@ document.addEventListener("DOMContentLoaded", () => {
           entries.forEach((entry) => {
             if (!entry.isIntersecting) return;
 
-            const children = entry.target.querySelectorAll(
-              "h1, h2, h3, p, .btn, .premium-card, .metric-card, .case-story-card",
-            );
-
-            children.forEach((child, index) => {
-              child.style.transitionDelay = `${index * 70}ms`;
-            });
-
             requestAnimationFrame(() => {
               entry.target.classList.add("is-visible");
             });
@@ -196,119 +176,6 @@ document.addEventListener("DOMContentLoaded", () => {
         element.classList.add("is-visible");
       });
     }
-  }
-
-  /* =========================
-     Floating Cards
-  ========================= */
-
-  if (!prefersReducedMotion && window.matchMedia("(hover: hover)").matches) {
-    const floatingCards = document.querySelectorAll(".floating-card");
-
-    let floatingFrame = null;
-
-    window.addEventListener(
-      "mousemove",
-      (event) => {
-        if (floatingFrame) return;
-
-        floatingFrame = requestAnimationFrame(() => {
-          const x = (window.innerWidth / 2 - event.clientX) / 120;
-          const y = (window.innerHeight / 2 - event.clientY) / 120;
-
-          floatingCards.forEach((card, index) => {
-            const depth = index + 1;
-
-            card.style.transform = `translate3d(${x * depth}px, ${
-              y * depth
-            }px, 0)`;
-          });
-
-          floatingFrame = null;
-        });
-      },
-      { passive: true },
-    );
-  }
-
-  /* =========================
-     Magnetic Hover
-  ========================= */
-
-  if (!prefersReducedMotion && window.matchMedia("(hover: hover)").matches) {
-    magneticElements.forEach((element) => {
-      element.addEventListener("mousemove", (event) => {
-        const rect = element.getBoundingClientRect();
-
-        const x = event.clientX - rect.left - rect.width / 2;
-        const y = event.clientY - rect.top - rect.height / 2;
-
-        requestAnimationFrame(() => {
-          element.style.transform = `translate(${x * 0.06}px, ${y * 0.06}px)`;
-        });
-      });
-
-      element.addEventListener("mouseleave", () => {
-        element.style.transform = "";
-      });
-    });
-  }
-
-  /* =========================
-     Cursor Customizado
-  ========================= */
-
-  if (
-    cursor &&
-    cursorDot &&
-    cursorText &&
-    !prefersReducedMotion &&
-    window.innerWidth > 1024 &&
-    window.matchMedia("(hover: hover)").matches
-  ) {
-    body.classList.add("has-custom-cursor");
-
-    let cursorFrame = null;
-    let mouseX = 0;
-    let mouseY = 0;
-
-    window.addEventListener(
-      "mousemove",
-      (event) => {
-        mouseX = event.clientX;
-        mouseY = event.clientY;
-
-        if (!cursorFrame) {
-          cursorFrame = requestAnimationFrame(() => {
-            cursor.style.transform = `translate3d(${mouseX}px, ${mouseY}px, 0) translate(-50%, -50%)`;
-
-            cursorDot.style.transform = `translate3d(${mouseX}px, ${mouseY}px, 0) translate(-50%, -50%)`;
-
-            cursorFrame = null;
-          });
-        }
-      },
-      { passive: true },
-    );
-
-    const cursorZones = document.querySelectorAll(".cursor-zone");
-
-    cursorZones.forEach((zone) => {
-      zone.addEventListener("mouseenter", () => {
-        const label = zone.getAttribute("data-cursor-label") || "Explorar";
-
-        cursorText.textContent = label;
-
-        requestAnimationFrame(() => {
-          body.classList.add("cursor-expanded");
-        });
-      });
-
-      zone.addEventListener("mouseleave", () => {
-        body.classList.remove("cursor-expanded");
-        cursorText.textContent = "Explorar";
-      });
-    });
   }
 
   /* =========================
